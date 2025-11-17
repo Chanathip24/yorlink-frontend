@@ -2,6 +2,7 @@ import { Unlink2 } from 'lucide-react'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/component/common'
 
+import { ShortUrlSuccessCard } from '../ShortUrlSuccessCard'
 import {
   homeShortUrlSectionContainerStyle,
   homeShortUrlSectionContentStyle,
@@ -25,6 +26,7 @@ const HomeShortUrlSection = () => {
         </CardHeader>
         <CardContent>
           <ShortUrlForm />
+          <ShortUrlSuccessCard />
         </CardContent>
       </Card>
     </div>

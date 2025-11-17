@@ -20,6 +20,12 @@ export const flexBetween: SerializedStyles = css`
   align-items: center;
 `
 
+export const iconSizeStyle: SerializedStyles = css`
+  width: 16px;
+  height: 16px;
+  color: ${theme.colors.primary};
+`
+
 export const gapMd: SerializedStyles = css`
   gap: ${theme.spacing.md};
 `

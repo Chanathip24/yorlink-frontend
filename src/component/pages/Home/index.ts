@@ -1,3 +1,5 @@
+export * from './AdditionalDetailSection'
+export * from './AdditionalDetailSection'
 export * from './CustomAliasSection'
 export * from './HomeShortUrlSection'
 export * from './HomeTitle'

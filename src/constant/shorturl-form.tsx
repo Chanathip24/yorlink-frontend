@@ -30,38 +30,51 @@ export const urlTypeOptions: Array<{
     },
   ]
 
+/**
+ * Zod schema for validating short URL form input.
+ *
+ * Fields:
+ * - url: The original URL to be shortened (must be a valid URL).
+ * - type: The type of shortened URL ('NORMAL', 'SCHEDULED', 'EXPIRED', or 'PROTECTED').
+ * - activationDate: Optional. Required if type is 'SCHEDULED'. Date/time when the link becomes active.
+ * - expirationDate: Optional. Required if type is 'EXPIRED'. Date/time when the link expires.
+ * - maximumClicks: Optional. Required if type is 'EXPIRED'. Maximum allowed clicks before expiration.
+ * - password: Optional. Required if type is 'PROTECTED'. Password for accessing the link.
+ * - passwordHint: Optional. Required if type is 'PROTECTED'. Hint for the password.
+ * - isCustomAlias: Optional. If true, custom alias is used.
+ * - alias: Optional. Required if isCustomAlias is true. Custom alias for the shortened link.
+ *
+ * Field requirements are enforced via .refine() statements based on dependency between values.
+ */
 export const urlShortSchema = z
   .object({
     url: z.string().url('Please enter a valid URL'),
     type: z.enum(SHORTURL_TYPE),
-    activationDate: z.date().optional(), // require if type is scheduled
-    expirationDate: z.date().optional(), // require if type is expiring link
-    maximumClicks: z.number().optional(), // require if type is expiring link
-    password: z.string().optional(), // require if type is protected
-    passwordHint: z.string().optional(), // require if type is protected
+    activationDate: z.date().optional(), // Required if type is scheduled
+    expirationDate: z.date().optional(), // Required if type is expiring link
+    maximumClicks: z.string().optional(), // Required if type is expiring link
+    password: z.string().optional(), // Required if type is protected
+    passwordHint: z.string().optional(), // Required if type is protected
     isCustomAlias: z.boolean().optional(),
-    alias: z.string().optional(), //require if isCustomAlias is true
+    alias: z.string().optional(), // Required if isCustomAlias is true
   })
+  /**
+   * Checks that activationDate is defined if the link type is 'SCHEDULED'.
+   */
   .refine((data) => data.type !== SHORTURL_TYPE.SCHEDULED || data.activationDate instanceof Date, {
     message: 'Activation date is required when scheduled link type is selected',
     path: ['activationDate'],
   })
-
-  .refine(
-    (data) =>
-      data.type !== SHORTURL_TYPE.EXPIRED ||
-      (data.expirationDate instanceof Date && typeof data.maximumClicks === 'number'),
-    {
-      message: 'Expiration date and maximum clicks are required when expired link type is selected',
-      path: ['expirationDate'],
-    },
-  )
-
+  /**
+   * Checks that password and passwordHint are defined if the link type is 'PROTECTED'.
+   */
   .refine((data) => data.type !== SHORTURL_TYPE.PROTECTED || (!!data.password && !!data.passwordHint), {
     message: 'Password and password hint are required when protected link type is selected',
     path: ['password'],
   })
-
+  /**
+   * Checks that alias is defined if isCustomAlias is true.
+   */
   .refine((data) => !data.isCustomAlias || !!data.alias, {
     message: 'Alias is required when custom alias is enable',
     path: ['alias'],

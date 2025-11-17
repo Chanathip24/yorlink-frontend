@@ -4,7 +4,12 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
 import { Button, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/component/common'
-import { CustomAliasSection, PreviewCustomAliasSection, ShortUrlTypeCard } from '@/component/pages/Home'
+import {
+  AdditionalDetailSection,
+  CustomAliasSection,
+  PreviewCustomAliasSection,
+  ShortUrlTypeCard,
+} from '@/component/pages/Home'
 import { urlShortSchema, urlTypeOptions } from '@/constant'
 import { SHORTURL_TYPE } from '@/enum'
 import type { Maybe, urlShortSchemaType } from '@/type'
@@ -85,8 +90,12 @@ const ShortUrlForm = () => {
             <ShortUrlTypeCard key={option.value} {...option} onSelect={handleUrlTypeSelect} selectedValue={type} />
           ))}
         </div>
+
+        <AdditionalDetailSection form={shortUrlForm} />
+
         <CustomAliasSection isCustomAlias={isCustomAlias} onToggleCustomAlias={handleToggleCustomAlias} />
         <PreviewCustomAliasSection isCustomAlias={isCustomAlias} control={shortUrlForm.control} />
+
         <Button block size="lg" type="submit">
           Shorten URL
         </Button>
