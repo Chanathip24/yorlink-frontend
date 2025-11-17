@@ -2,6 +2,9 @@ import { css, type SerializedStyles } from '@emotion/react'
 
 import { theme } from './theme'
 
+export const transitionBaseStyle: SerializedStyles = css`
+  transition: all 0.2s ease-in-out;
+`
 export const flexCenter: SerializedStyles = css`
   display: flex;
   justify-content: center;

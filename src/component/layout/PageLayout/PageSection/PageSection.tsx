@@ -4,11 +4,11 @@ import type { PropsWithChildren } from 'react'
 import { PageSectionStyle } from './PageSection.style'
 
 type IPageSectionProps = PropsWithChildren<{
-  css?: SerializedStyles | Array<SerializedStyles>
+  extraStyles?: SerializedStyles | Array<SerializedStyles>
 }>
 
-const PageSection = ({ children, css }: IPageSectionProps) => {
-  return <div css={[PageSectionStyle, css]}>{children}</div>
+const PageSection = ({ children, extraStyles }: IPageSectionProps) => {
+  return <div css={[PageSectionStyle, extraStyles]}>{children}</div>
 }
 
 export default PageSection
