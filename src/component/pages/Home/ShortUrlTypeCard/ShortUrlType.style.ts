@@ -1,6 +1,6 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-import { flexCenter, highlightPrimaryGradient, theme, transitionBaseStyle } from '@/styles'
+import { flexCenter, theme, transitionBaseStyle } from '@/styles'
 
 export const cardStyle: SerializedStyles = css`
   padding: 1.25rem;

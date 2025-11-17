@@ -9,32 +9,30 @@ export const urlTypeOptions: Array<{
   icon: React.ReactNode
   description: string
 }> = [
-  { value: SHORTURL_TYPE.NORMAL, label: 'Normal Link', icon: <Link2 />, description: 'Standard shortened URL' },
-  {
-    value: SHORTURL_TYPE.SCHEDULED,
-    label: 'Scheduled Link',
-    icon: <Calendar />,
-    description: 'Activate at a specific date/time',
-  },
-  {
-    value: SHORTURL_TYPE.EXPIRED,
-    label: 'Expiring Link',
-    icon: <TimerOff />,
-    description: 'Set expiry date or click limit',
-  },
-  {
-    value: SHORTURL_TYPE.PROTECTED,
-    label: 'Protected Link',
-    icon: <Lock />,
-    description: 'Require password to access',
-  },
-]
+    { value: SHORTURL_TYPE.NORMAL, label: 'Normal Link', icon: <Link2 />, description: 'Standard shortened URL' },
+    {
+      value: SHORTURL_TYPE.SCHEDULED,
+      label: 'Scheduled Link',
+      icon: <Calendar />,
+      description: 'Activate at a specific date/time',
+    },
+    {
+      value: SHORTURL_TYPE.EXPIRED,
+      label: 'Expiring Link',
+      icon: <TimerOff />,
+      description: 'Set expiry date or click limit',
+    },
+    {
+      value: SHORTURL_TYPE.PROTECTED,
+      label: 'Protected Link',
+      icon: <Lock />,
+      description: 'Require password to access',
+    },
+  ]
 
 export const urlShortSchema = z
   .object({
-    url: z
-      .string()
-      .regex(/^(https?:\/\/)([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?$/, { message: 'Please enter a valid URL ' }),
+    url: z.string().url('Please enter a valid URL'),
     type: z.enum(SHORTURL_TYPE),
     activationDate: z.date().optional(), // require if type is scheduled
     expirationDate: z.date().optional(), // require if type is expiring link

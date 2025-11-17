@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 
 import { Button, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/component/common'
 import { urlShortSchema, urlTypeOptions } from '@/constant'
@@ -21,8 +22,8 @@ const ShortUrlForm = () => {
 
   const [type]: [SHORTURL_TYPE] = shortUrlForm.watch(['type'])
 
-  const handleFormSubmit = useCallback((data: urlShortSchemaType) => {
-    console.log(data)
+  const handleFormSubmit = useCallback(() => {
+    toast.success('URL shortened successfully')
   }, [])
 
   const handleUrlTypeSelect = useCallback(
