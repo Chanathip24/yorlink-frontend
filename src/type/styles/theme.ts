@@ -75,9 +75,6 @@ export type Theme = {
     xl: string
   }
   breakpoints: {
-    mobile: string
-    tablet: string
     desktop: string
-    wide: string
   }
 }
