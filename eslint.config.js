@@ -3,7 +3,6 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 import importPlugin from 'eslint-plugin-import'
 import prettierPlugin from 'eslint-plugin-prettier'
 import reactPlugin from 'eslint-plugin-react'
-import reactHookPlugin from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
@@ -22,12 +21,10 @@ export default defineConfig([
       import: importPlugin,
       prettier: prettierPlugin,
       react: reactPlugin,
-      'react-hooks': reactHookPlugin,
       'react-refresh': reactRefresh,
       'simple-import-sort': simpleImportSortPlugin,
     },
     rules: {
-      ...reactHookPlugin.configs.recommended.rules,
       'no-console': 1,
       'prettier/prettier': [
         'error',
