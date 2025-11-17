@@ -17,7 +17,7 @@ const AddtionalDetailSection = ({ form }: IAddtionalDetailSectionProps) => {
   if (type === SHORTURL_TYPE.EXPIRED) {
     return <ExpiredAdditionalDetail form={form} />
   } else if (type === SHORTURL_TYPE.PROTECTED) {
-    return <ProtectedLinkAdditionalDetail />
+    return <ProtectedLinkAdditionalDetail form={form} />
   } else if (type === SHORTURL_TYPE.SCHEDULED) {
     return <ScheduleAdditionalDetail form={form} />
   }
