@@ -1,4 +1,5 @@
 export type Theme = {
+  headerHeight: string
   colors: {
     primary: string
     primaryForeground: string
@@ -74,9 +75,6 @@ export type Theme = {
     xl: string
   }
   breakpoints: {
-    mobile: string
-    tablet: string
     desktop: string
-    wide: string
   }
 }

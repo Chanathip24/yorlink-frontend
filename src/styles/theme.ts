@@ -32,7 +32,7 @@ export const theme: Theme = {
       sidebarRing: '#6366f1',
     },
   },
-
+  headerHeight: '64px',
   spacing: {
     xs: '4px',
     sm: '8px',
@@ -77,9 +77,6 @@ export const theme: Theme = {
     xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
   },
   breakpoints: {
-    mobile: '640px',
-    tablet: '768px',
-    desktop: '1024px',
-    wide: '1280px',
+    desktop: '80rem',
   },
 }

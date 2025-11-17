@@ -15,7 +15,6 @@ export const globalStyles: SerializedStyles = css`
   body {
     font-family: ${theme.typography.fontFamily.body};
     font-size: ${theme.typography.fontSize.base};
-    color: ${theme.colors.primaryForeground};
     background-color: ${theme.colors.background};
     line-height: 1.5;
   }

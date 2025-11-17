@@ -1,7 +1,9 @@
 import type { PropsWithChildren } from 'react'
 
+import { OutletWrapperStyle } from './OutletWrapper.style'
+
 const OutletWrapper = ({ children }: PropsWithChildren) => {
-  return <div className="min-h-[calc(100dvh-var(--header-height))] overflow-y-auto">{children}</div>
+  return <div css={OutletWrapperStyle}>{children}</div>
 }
 
 export default OutletWrapper

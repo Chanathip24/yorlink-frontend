@@ -44,8 +44,5 @@ export const card: SerializedStyles = css`
 
 // Media query helpers
 export const mediaQuery = {
-  mobile: `@media (min-width: ${theme.breakpoints.mobile})`,
-  tablet: `@media (min-width: ${theme.breakpoints.tablet})`,
   desktop: `@media (min-width: ${theme.breakpoints.desktop})`,
-  wide: `@media (min-width: ${theme.breakpoints.wide})`,
 }
