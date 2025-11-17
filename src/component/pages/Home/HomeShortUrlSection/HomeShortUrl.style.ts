@@ -1,6 +1,6 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-import { flexCenter, mediaQuery, spaceYStyle, theme } from '@/styles'
+import { flexCenter, mediaQuery, spaceYLgStyle, theme } from '@/styles'
 
 export const shortUrlCardHeaderStyle: SerializedStyles = css`
   display: flex;
@@ -27,7 +27,7 @@ export const urlTypeOptionsContainerStyle: SerializedStyles = css`
 `
 
 export const formContainerStyle: SerializedStyles = css`
-  ${spaceYStyle}
+  ${spaceYLgStyle}
 `
 
 export const homeShortUrlSectionContainerStyle: SerializedStyles = css`
@@ -35,7 +35,7 @@ export const homeShortUrlSectionContainerStyle: SerializedStyles = css`
 `
 
 export const homeShortUrlSectionContentStyle: SerializedStyles = css`
-  ${spaceYStyle}
+  ${spaceYLgStyle}
   ${mediaQuery.desktop} {
     width: 45%;
   }

@@ -1,10 +1,10 @@
 import { PageSection } from '@/component/layout'
 import { HomeShortUrlSection, HomeTitle } from '@/component/pages/Home'
-import { spaceYStyle } from '@/styles'
+import { spaceYXlStyle } from '@/styles'
 
 const HomePage = () => {
   return (
-    <PageSection extraStyles={spaceYStyle}>
+    <PageSection extraStyles={spaceYXlStyle}>
       <HomeTitle />
       <HomeShortUrlSection />
     </PageSection>
