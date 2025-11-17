@@ -1,6 +1,6 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-import { theme } from '@/styles'
+import { theme } from './theme'
 
 export const flexCenter: SerializedStyles = css`
   display: flex;
@@ -35,7 +35,7 @@ export const truncateText: SerializedStyles = css`
 `
 
 export const card: SerializedStyles = css`
-  background: ${theme.colors.background.primary};
+  background: ${theme.colors.background};
   border: 1px solid ${theme.colors.border};
   border-radius: ${theme.borderRadius.lg};
   padding: ${theme.spacing.lg};

@@ -1,21 +1,34 @@
 export type Theme = {
   colors: {
     primary: string
+    primaryForeground: string
     secondary: string
-    success: string
-    danger: string
-    warning: string
-    text: {
-      primary: string
-      secondary: string
-      light: string
-    }
-    background: {
-      primary: string
-      secondary: string
-      dark: string
-    }
+    secondaryForeground: string
+    accent: string
+    accentForeground: string
+    background: string
+    backgroundSecondary: string
+    cardBackground: string
+    cardForeground: string
+    popOverBackground: string
+    popOverForeground: string
+    muted: string
+    mutedForeground: string
+    destructive: string
+    destructiveForeground: string
     border: string
+    input: string
+    ring: string
+    sidebar: {
+      sidebarBackground: string
+      sidebarForeground: string
+      sidebarPrimary: string
+      sidebarPrimaryForeground: string
+      sidebarAccent: string
+      sidebarAccentForeground: string
+      sidebarBorder: string
+      sidebarRing: string
+    }
   }
   spacing: {
     xs: string
