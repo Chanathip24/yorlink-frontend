@@ -63,9 +63,9 @@ const variantStyles: Record<ButtonVariant, ReturnType<typeof css>> = {
     }
   `,
   outline: css`
-    border: 1px solid ${theme.colors.input};
+    border: 0.5px solid ${theme.colors.input};
     background: ${theme.colors.background};
-    box-shadow: 0 0 0 1px ${theme.colors.border};
+    box-shadow: 0 0 0 0.5px ${theme.colors.border};
     &:hover {
       background: ${theme.colors.accent};
       color: ${theme.colors.accentForeground};

@@ -1,8 +1,9 @@
 import { Unlink2 } from 'lucide-react'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/component/common'
+import { ShortUrlHistoryCard, ShortUrlSuccessCard } from '@/component/pages/Home'
+import { spaceYStyle } from '@/styles'
 
-import { ShortUrlSuccessCard } from '../ShortUrlSuccessCard'
 import {
   homeShortUrlSectionContainerStyle,
   homeShortUrlSectionContentStyle,
@@ -24,11 +25,12 @@ const HomeShortUrlSection = () => {
             <CardDescription>Enter your long URL to get a short, memorable link</CardDescription>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent css={spaceYStyle}>
           <ShortUrlForm />
-          <ShortUrlSuccessCard />
         </CardContent>
       </Card>
+      <ShortUrlSuccessCard />
+      <ShortUrlHistoryCard />
     </div>
   )
 }

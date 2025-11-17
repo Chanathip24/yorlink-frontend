@@ -26,6 +26,11 @@ export const iconSizeStyle: SerializedStyles = css`
   color: ${theme.colors.primary};
 `
 
+export const iconSizeForegroundStyle: SerializedStyles = css`
+  width: 16px;
+  height: 16px;
+`
+
 export const gapMd: SerializedStyles = css`
   gap: ${theme.spacing.md};
 `
