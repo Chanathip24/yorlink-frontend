@@ -10,17 +10,26 @@ export const flexCenter: SerializedStyles = css`
   justify-content: center;
   align-items: center;
 `
-
+export const flexColumn: SerializedStyles = css`
+  display: flex;
+  flex-direction: column;
+`
 export const flexBetween: SerializedStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-export const container: SerializedStyles = css`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 ${theme.spacing.lg};
+export const gapMd: SerializedStyles = css`
+  gap: ${theme.spacing.md};
+`
+
+export const gapSm: SerializedStyles = css`
+  gap: ${theme.spacing.sm};
+`
+
+export const block: SerializedStyles = css`
+  width: 100%;
 `
 
 export const buttonReset: SerializedStyles = css`
@@ -35,14 +44,6 @@ export const truncateText: SerializedStyles = css`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
-
-export const card: SerializedStyles = css`
-  background: ${theme.colors.background};
-  border: 1px solid ${theme.colors.border};
-  border-radius: ${theme.borderRadius.lg};
-  padding: ${theme.spacing.lg};
-  box-shadow: ${theme.shadows.sm};
 `
 
 // Media query helpers
