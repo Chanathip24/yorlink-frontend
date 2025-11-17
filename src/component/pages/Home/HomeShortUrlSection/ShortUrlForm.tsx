@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
 
 import { Button, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/component/common'
 import {
@@ -16,7 +15,11 @@ import type { Maybe, urlShortSchemaType } from '@/type'
 
 import { formContainerStyle, urlTypeOptionsContainerStyle } from './HomeShortUrl.style'
 
-const ShortUrlForm = () => {
+type IShortUrlFormProps = {
+  isShorteningUrl: boolean
+  handleShortenUrl: (request: urlShortSchemaType) => Promise<void>
+}
+const ShortUrlForm = ({ isShorteningUrl, handleShortenUrl }: IShortUrlFormProps) => {
   const shortUrlForm = useForm<urlShortSchemaType>({
     resolver: zodResolver(urlShortSchema),
     defaultValues: {
@@ -27,17 +30,9 @@ const ShortUrlForm = () => {
 
   const [type, isCustomAlias]: [SHORTURL_TYPE, Maybe<boolean>] = shortUrlForm.watch(['type', 'isCustomAlias'])
 
-  /**
-   * Handles the short URL form submission.
-   * On successful submission, displays a success toast.
-   *
-   * @function handleFormSubmit
-   * @returns {void}
-   */
-  const handleFormSubmit = useCallback(() => {
-    toast.success('URL shortened successfully')
-  }, [])
-
+  const isButtonDisabled: boolean = useMemo(() => {
+    return isShorteningUrl || shortUrlForm.formState.isSubmitting
+  }, [isShorteningUrl, shortUrlForm.formState.isSubmitting])
   /**
    * Handles the short URL form submission.
    * On successful submission, displays a success toast.
@@ -71,7 +66,7 @@ const ShortUrlForm = () => {
 
   return (
     <FormProvider {...shortUrlForm}>
-      <form css={formContainerStyle} onSubmit={shortUrlForm.handleSubmit(handleFormSubmit)}>
+      <form css={formContainerStyle} onSubmit={shortUrlForm.handleSubmit(handleShortenUrl)}>
         <FormField
           control={shortUrlForm.control}
           name="url"
@@ -96,7 +91,7 @@ const ShortUrlForm = () => {
         <CustomAliasSection isCustomAlias={isCustomAlias} onToggleCustomAlias={handleToggleCustomAlias} />
         <PreviewCustomAliasSection isCustomAlias={isCustomAlias} control={shortUrlForm.control} />
 
-        <Button block size="lg" type="submit">
+        <Button disabled={isButtonDisabled} block size="lg" type="submit">
           Shorten URL
         </Button>
       </form>

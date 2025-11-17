@@ -9,26 +9,26 @@ export const urlTypeOptions: Array<{
   icon: React.ReactNode
   description: string
 }> = [
-  { value: SHORTURL_TYPE.NORMAL, label: 'Normal Link', icon: <Link2 />, description: 'Standard shortened URL' },
-  {
-    value: SHORTURL_TYPE.SCHEDULED,
-    label: 'Scheduled Link',
-    icon: <Calendar />,
-    description: 'Activate at a specific date/time',
-  },
-  {
-    value: SHORTURL_TYPE.EXPIRED,
-    label: 'Expiring Link',
-    icon: <TimerOff />,
-    description: 'Set expiry date or click limit',
-  },
-  {
-    value: SHORTURL_TYPE.PROTECTED,
-    label: 'Protected Link',
-    icon: <Lock />,
-    description: 'Require password to access',
-  },
-]
+    { value: SHORTURL_TYPE.NORMAL, label: 'Normal Link', icon: <Link2 />, description: 'Standard shortened URL' },
+    {
+      value: SHORTURL_TYPE.SCHEDULED,
+      label: 'Scheduled Link',
+      icon: <Calendar />,
+      description: 'Activate at a specific date/time',
+    },
+    {
+      value: SHORTURL_TYPE.EXPIRED,
+      label: 'Expiring Link',
+      icon: <TimerOff />,
+      description: 'Set expiry date or click limit',
+    },
+    {
+      value: SHORTURL_TYPE.PROTECTED,
+      label: 'Protected Link',
+      icon: <Lock />,
+      description: 'Require password to access',
+    },
+  ]
 
 /**
  * Zod schema for validating short URL form input.
@@ -68,8 +68,8 @@ export const urlShortSchema = z
   /**
    * Checks that password and passwordHint are defined if the link type is 'PROTECTED'.
    */
-  .refine((data) => data.type !== SHORTURL_TYPE.PROTECTED || (!!data.password && !!data.passwordHint), {
-    message: 'Password and password hint are required when protected link type is selected',
+  .refine((data) => data.type !== SHORTURL_TYPE.PROTECTED || !!data.password, {
+    message: 'Password is required when protected link type is selected',
     path: ['password'],
   })
   /**
