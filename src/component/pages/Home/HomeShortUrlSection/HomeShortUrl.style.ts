@@ -1,6 +1,6 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-import { flexCenter, mediaQuery, spaceYLgStyle, theme } from '@/styles'
+import { block, flexCenter, mediaQuery, spaceYLgStyle, theme } from '@/styles'
 
 export const shortUrlCardHeaderStyle: SerializedStyles = css`
   display: flex;
@@ -32,10 +32,13 @@ export const formContainerStyle: SerializedStyles = css`
 
 export const homeShortUrlSectionContainerStyle: SerializedStyles = css`
   ${flexCenter}
+  flex-direction: column;
+  gap: ${theme.spacing.lg};
 `
 
 export const homeShortUrlSectionContentStyle: SerializedStyles = css`
   ${spaceYLgStyle}
+  ${block}
   ${mediaQuery.desktop} {
     width: 45%;
   }
