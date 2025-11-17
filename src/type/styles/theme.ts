@@ -1,4 +1,5 @@
 export type Theme = {
+  headerHeight: string
   colors: {
     primary: string
     primaryForeground: string
