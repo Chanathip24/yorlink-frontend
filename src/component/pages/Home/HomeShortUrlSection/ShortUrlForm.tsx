@@ -4,11 +4,11 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
 import { Button, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/component/common'
+import { CustomAliasSection, PreviewCustomAliasSection, ShortUrlTypeCard } from '@/component/pages/Home'
 import { urlShortSchema, urlTypeOptions } from '@/constant'
 import { SHORTURL_TYPE } from '@/enum'
-import type { urlShortSchemaType } from '@/type'
+import type { Maybe, urlShortSchemaType } from '@/type'
 
-import { ShortUrlTypeCard } from '../ShortUrlTypeCard'
 import { formContainerStyle, urlTypeOptionsContainerStyle } from './HomeShortUrl.style'
 
 const ShortUrlForm = () => {
@@ -20,12 +20,43 @@ const ShortUrlForm = () => {
     },
   })
 
-  const [type]: [SHORTURL_TYPE] = shortUrlForm.watch(['type'])
+  const [type, isCustomAlias]: [SHORTURL_TYPE, Maybe<boolean>] = shortUrlForm.watch(['type', 'isCustomAlias'])
 
+  /**
+   * Handles the short URL form submission.
+   * On successful submission, displays a success toast.
+   *
+   * @function handleFormSubmit
+   * @returns {void}
+   */
   const handleFormSubmit = useCallback(() => {
     toast.success('URL shortened successfully')
   }, [])
 
+  /**
+   * Handles the short URL form submission.
+   * On successful submission, displays a success toast.
+   * Currently, just mocks the success state.
+   *
+   * @function handleToggleCustomAlias
+   * @param {boolean} checked - The checked state of the switch.
+   * @returns {void}
+   */
+  const handleToggleCustomAlias = useCallback(
+    (checked: boolean) => {
+      shortUrlForm.setValue('isCustomAlias', checked)
+    },
+    [shortUrlForm],
+  )
+
+  /**
+   * Handles the URL type selection.
+   * Updates the form value with the selected URL type.
+   *
+   * @function handleUrlTypeSelect
+   * @param {SHORTURL_TYPE} value - The selected URL type.
+   * @returns {void}
+   */
   const handleUrlTypeSelect = useCallback(
     (value: SHORTURL_TYPE): void => {
       shortUrlForm.setValue('type', value)
@@ -54,7 +85,8 @@ const ShortUrlForm = () => {
             <ShortUrlTypeCard key={option.value} {...option} onSelect={handleUrlTypeSelect} selectedValue={type} />
           ))}
         </div>
-
+        <CustomAliasSection isCustomAlias={isCustomAlias} onToggleCustomAlias={handleToggleCustomAlias} />
+        <PreviewCustomAliasSection isCustomAlias={isCustomAlias} control={shortUrlForm.control} />
         <Button block size="lg" type="submit">
           Shorten URL
         </Button>

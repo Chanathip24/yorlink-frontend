@@ -47,9 +47,6 @@ export const urlShortSchema = z
     path: ['activationDate'],
   })
 
-  // ---------------------------------------------
-  // 2️⃣ expiring → expirationDate + maximumClicks required
-  // ---------------------------------------------
   .refine(
     (data) =>
       data.type !== SHORTURL_TYPE.EXPIRED ||
@@ -60,18 +57,12 @@ export const urlShortSchema = z
     },
   )
 
-  // ---------------------------------------------
-  // 3️⃣ protected → password + passwordHint required
-  // ---------------------------------------------
   .refine((data) => data.type !== SHORTURL_TYPE.PROTECTED || (!!data.password && !!data.passwordHint), {
     message: 'Password and password hint are required when protected link type is selected',
     path: ['password'],
   })
 
-  // ---------------------------------------------
-  // 4️⃣ custom alias → alias required
-  // ---------------------------------------------
   .refine((data) => !data.isCustomAlias || !!data.alias, {
-    message: 'Alias is required when custom alias is selected',
+    message: 'Alias is required when custom alias is enable',
     path: ['alias'],
   })
