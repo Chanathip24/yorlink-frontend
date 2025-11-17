@@ -1,5 +1,5 @@
 import { CopyIcon, QrCode, SquareArrowOutUpRight } from 'lucide-react'
-import { useCallback, useMemo } from 'react'
+import { type Dispatch, type SetStateAction, useCallback, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 
@@ -7,9 +7,11 @@ import { Button, Card, CardContent, CardDescription, CardHeader } from '@/compon
 import { flexBetween, highlightPrimary, iconSizeForegroundStyle, iconSizeStyle } from '@/styles'
 import { copyTextToClipboard } from '@/utilities'
 
+import { QrcodeSection } from './QrcodeSection'
 import { buttonContainerStyle, shortUrlSuccessCardStyle } from './ShortUrlSuccess.style'
 
 const ShortUrlSuccessCard = () => {
+  const [isQrcodeOpen, setIsQrcodeOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
   const mockValue = useMemo(() => {
     return 'https://google.com'
   }, [])
@@ -26,6 +28,14 @@ const ShortUrlSuccessCard = () => {
   const handleOpenLink = useCallback(() => {
     window.open(mockValue, '_blank')
   }, [mockValue])
+
+  const handleToggleQrcode = useCallback(() => {
+    setIsQrcodeOpen((prev) => !prev)
+  }, [])
+
+  const showQrcode: string = useMemo(() => {
+    return isQrcodeOpen ? 'Hide QR Code' : 'Show QR Code'
+  }, [isQrcodeOpen])
 
   return (
     <Card css={shortUrlSuccessCardStyle}>
@@ -49,9 +59,9 @@ const ShortUrlSuccessCard = () => {
             <CopyIcon css={iconSizeForegroundStyle} />
             Copy
           </Button>
-          <Button variant="outline" onClick={handleCopy}>
+          <Button variant="outline" onClick={handleToggleQrcode}>
             <QrCode css={iconSizeForegroundStyle} />
-            Show QR Code
+            {showQrcode}
           </Button>
           <Button variant="outline" onClick={handleOpenLink}>
             <SquareArrowOutUpRight css={iconSizeForegroundStyle} />
@@ -59,6 +69,7 @@ const ShortUrlSuccessCard = () => {
           </Button>
         </div>
       </CardContent>
+      <QrcodeSection isOpen={isQrcodeOpen} value={mockValue} />
     </Card>
   )
 }
