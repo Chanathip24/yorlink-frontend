@@ -1,5 +1,5 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-export const HomeStyle: SerializedStyles = css`
+export const homeTitleStyle: SerializedStyles = css`
   text-align: center;
 `

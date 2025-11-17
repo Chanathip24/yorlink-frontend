@@ -1,4 +1,5 @@
 export * from './global'
 export * from './mixins'
+export * from './space'
 export * from './text'
 export * from './theme'
