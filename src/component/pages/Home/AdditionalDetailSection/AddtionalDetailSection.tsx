@@ -10,6 +10,7 @@ import { ScheduleAdditionalDetail } from './ScheduleAdditionalDetail'
 type IAddtionalDetailSectionProps = {
   form: UseFormReturn<urlShortSchemaType>
 }
+
 const AddtionalDetailSection = ({ form }: IAddtionalDetailSectionProps) => {
   const [type]: [SHORTURL_TYPE] = form.watch(['type'])
 
@@ -18,7 +19,7 @@ const AddtionalDetailSection = ({ form }: IAddtionalDetailSectionProps) => {
   } else if (type === SHORTURL_TYPE.PROTECTED) {
     return <ProtectedLinkAdditionalDetail />
   } else if (type === SHORTURL_TYPE.SCHEDULED) {
-    return <ScheduleAdditionalDetail />
+    return <ScheduleAdditionalDetail form={form} />
   }
   return null
 }

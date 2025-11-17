@@ -90,7 +90,9 @@ const ShortUrlForm = () => {
             <ShortUrlTypeCard key={option.value} {...option} onSelect={handleUrlTypeSelect} selectedValue={type} />
           ))}
         </div>
+
         <AdditionalDetailSection form={shortUrlForm} />
+
         <CustomAliasSection isCustomAlias={isCustomAlias} onToggleCustomAlias={handleToggleCustomAlias} />
         <PreviewCustomAliasSection isCustomAlias={isCustomAlias} control={shortUrlForm.control} />
 
