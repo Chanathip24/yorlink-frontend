@@ -1,9 +1,9 @@
-import { useSetAtom } from 'jotai/react'
+import { useAtomValue, useSetAtom } from 'jotai/react'
 import { Unlink2 } from 'lucide-react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-import { urlHistoryAtom } from '@/atoms'
+import { urlHistoryAtom, type UrlHistoryState } from '@/atoms'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/component/common'
 import { ShortUrlHistoryCard, ShortUrlSuccessCard } from '@/component/pages/Home'
 import { useYorLinkApiShortenUrl } from '@/hook'
@@ -22,7 +22,10 @@ import ShortUrlForm from './ShortUrlForm'
 const HomeShortUrlSection = () => {
   const { mutateAsync: shortenUrl, isPending: isShorteningUrl } = useYorLinkApiShortenUrl()
   const [payload, setPayload] = useState<Maybe<IYorLinkApiClientShortUrlResponse['data']>>(null)
+
   const setUrlHistory = useSetAtom(urlHistoryAtom)
+  const urlHistory: UrlHistoryState = useAtomValue(urlHistoryAtom)
+
   const handleShortenUrl = async (request: urlShortSchemaType) => {
     const payload: IShortUrlRequest = {
       url: request.url,
@@ -38,6 +41,12 @@ const HomeShortUrlSection = () => {
     try {
       const result: IYorLinkApiClientShortUrlResponse['data'] = await shortenUrl(payload)
       setPayload(result)
+      //check id exist in url history
+      const isExist: boolean = urlHistory.urlHistory?.some((item) => item.id === result.id) ?? false
+      if (isExist) {
+        toast.error('URL already exists')
+        return
+      }
       setUrlHistory((prev) => ({
         ...prev,
         urlHistory: Array.isArray(prev.urlHistory) ? [...prev.urlHistory, result] : [result],

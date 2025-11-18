@@ -4,10 +4,9 @@ import toast from 'react-hot-toast'
 import { Link, type NavigateFunction, useNavigate } from 'react-router-dom'
 
 import { Button, Card, CardContent, CardDescription, CardHeader } from '@/component/common'
-import { YORLINK_API_SHORTEN_URL } from '@/config'
 import { flexBetween, highlightPrimary, iconSizeForegroundStyle, iconSizeStyle } from '@/styles'
 import type { IYorLinkApiClientShortUrlResponse, Maybe } from '@/type'
-import { copyTextToClipboard } from '@/utilities'
+import { copyTextToClipboard, getFullShortenUrl, getShortenSuffixUrl } from '@/utilities'
 
 import { QrcodeSection } from './QrcodeSection'
 import { buttonContainerStyle, shortUrlSuccessCardStyle } from './ShortUrlSuccess.style'
@@ -18,8 +17,13 @@ type IShortUrlSuccessCardProps = {
 const ShortUrlSuccessCard = ({ payload }: IShortUrlSuccessCardProps) => {
   const [isQrcodeOpen, setIsQrcodeOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
   const navigate: NavigateFunction = useNavigate()
+
   const shortUrl: string = useMemo(() => {
-    return `${YORLINK_API_SHORTEN_URL}/${payload?.alias}`
+    return getFullShortenUrl(payload?.alias ?? '')
+  }, [payload?.alias])
+
+  const suffixShortUrl: string = useMemo(() => {
+    return getShortenSuffixUrl(payload?.alias ?? '')
   }, [payload?.alias])
 
   const handleCopy = useCallback(() => {
@@ -35,8 +39,8 @@ const ShortUrlSuccessCard = ({ payload }: IShortUrlSuccessCardProps) => {
     if (!payload) {
       return
     }
-    navigate(payload.alias)
-  }, [navigate, payload])
+    navigate(suffixShortUrl)
+  }, [navigate, suffixShortUrl])
 
   const handleToggleQrcode = useCallback(() => {
     setIsQrcodeOpen((prev) => !prev)
@@ -56,7 +60,7 @@ const ShortUrlSuccessCard = ({ payload }: IShortUrlSuccessCardProps) => {
         <div>
           <CardDescription>Your short URL is ready!</CardDescription>
           <div css={flexBetween}>
-            <Link to={payload.alias} css={highlightPrimary}>
+            <Link to={suffixShortUrl} css={highlightPrimary}>
               <h3>{shortUrl}</h3>
             </Link>
             <Button size="icon" variant="outline" onClick={handleCopy}>

@@ -30,3 +30,6 @@ export type IUseYorLinkApiShortUrlResponse = IBaseUseMutation<
   IYorLinkApiClientShortUrlResponse['data'],
   IShortUrlRequest
 >
+
+//hook
+export type IUseYorLinkApiDeleteUrlResponse = IBaseUseMutation<void, string>
