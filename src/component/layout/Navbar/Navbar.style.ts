@@ -12,6 +12,7 @@ export const NavbarStyle: SerializedStyles = css`
 `
 
 export const navbarWrapperStyle: SerializedStyles = css`
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: ${theme.spacing.md};

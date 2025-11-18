@@ -1,6 +1,12 @@
 import type { SHORTURL_TYPE } from '@/enum'
 import type { IBaseUseMutation, IYorLinkApiClientBaseResponse } from '@/type'
 
+export type IAccessProtectedUrlPayload = {
+  id: string
+  password: string
+}
+
+export type IUseYorLinkApiAccessProtectedUrlResponse = IBaseUseMutation<void, IAccessProtectedUrlPayload>
 export type IShortUrlRequest = {
   url: string
   type: SHORTURL_TYPE

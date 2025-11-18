@@ -61,3 +61,9 @@ export const truncateText: SerializedStyles = css`
 export const mediaQuery = {
   desktop: `@media (min-width: ${theme.breakpoints.desktop})`,
 }
+
+export const iconPrimaryXlStyle: SerializedStyles = css`
+  width: 24px;
+  height: 24px;
+  color: ${theme.colors.primary};
+`
