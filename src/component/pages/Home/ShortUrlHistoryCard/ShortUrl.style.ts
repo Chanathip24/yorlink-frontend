@@ -26,3 +26,8 @@ export const textCardContent: SerializedStyles = css`
   font-size: ${theme.typography.fontSize.sm};
   color: ${theme.colors.mutedForeground};
 `
+
+export const cardContainerWrapper: SerializedStyles = css`
+  ${block}
+  text-align: center;
+`
