@@ -22,9 +22,9 @@ pipeline {
                     sh """
                         echo "Building Docker image securely..."
                         docker build \
-                        --build-arg VITE_YORLINK_API_BASE_URL=${VITE_API_BASE_URL} \
-                        --build-arg VITE_YORLINK_FRONTEND_URL=${VITE_FRONTEND_URL} \
-                        -t ${REGISTRY}/${IMAGE_NAME}:latest .
+                        --build-arg VITE_YORLINK_API_BASE_URL=$VITE_API_BASE_URL \
+                        --build-arg VITE_YORLINK_FRONTEND_URL=$VITE_FRONTEND_URL \
+                        -t $REGISTRY/$IMAGE_NAME:latest .
                     """
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
                     sh """
                         echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                        docker push ${REGISTRY}/${IMAGE_NAME}:latest
+                        docker push $REGISTRY/$IMAGE_NAME:latest
                     """
                 }
             }
