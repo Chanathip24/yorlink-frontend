@@ -41,8 +41,8 @@ const EntryPoint = () => {
   if (!urlDetail) {
     return (
       <EmptyPage
-        title="URL not found"
-        description="The URL you are looking for does not exist."
+        title="Oops! URL Not Found"
+        description="Sorry, we couldn't find the link you were looking for. Please double-check the URL or try another one."
         icon={<Link2Off css={iconPrimaryXlStyle} />}
       />
     )
