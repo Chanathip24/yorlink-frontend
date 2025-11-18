@@ -10,14 +10,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                script {
-                    // Get short commit hash for versioning
-                    env.GIT_COMMIT_SHORT = sh(
-                        returnStdout: true,
-                        script: 'git rev-parse --short HEAD'
-                    ).trim()
-                    echo "Commit hash: ${env.GIT_COMMIT_SHORT}"
-                }
             }
         }
 
@@ -32,8 +24,7 @@ pipeline {
                         docker build \
                         --build-arg VITE_YORLINK_API_BASE_URL=$VITE_API_BASE_URL \
                         --build-arg VITE_YORLINK_FRONTEND_URL=$VITE_FRONTEND_URL \
-                        -t $REGISTRY/$IMAGE_NAME:latest \
-                        -t $REGISTRY/$IMAGE_NAME:${GIT_COMMIT_SHORT} .
+                        -t $REGISTRY/$IMAGE_NAME:latest .
                     """
                 }
             }
