@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: chanathipcha24/yorlink-frontend:latest
           ports:
             - containerPort: 80
 ---
