@@ -1,2 +1,2 @@
-export type YorLinkApiQueryClientKey = 'urlDetail'
-export type YorLinkApiExecuteClientKey = 'shortenUrl' | 'deleteUrl'
+export type YorLinkApiQueryClientKey = 'urlDetailWithAlias'
+export type YorLinkApiExecuteClientKey = 'shortenUrl' | 'deleteUrl' | 'accessProtectedUrl'
