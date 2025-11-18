@@ -46,6 +46,11 @@ pipeline {
                 sh "microk8s kubectl apply -f k8s/frontend-deployment.yaml"
             }
         }
+        stage('Deploy Ingress') {
+            steps {
+                sh "microk8s kubectl apply -f k8s/frontend-ingress.yaml"
+            }
+        }
 
         stage('Verify Deployment') {
             steps {

@@ -27,6 +27,6 @@ spec:
     app: yorlink-frontend
   ports:
     - protocol: TCP
-      port: 80       # External port
-      targetPort: 80 # Container port
-  type: LoadBalancer
+      port: 80       # internal port
+      targetPort: 80 # container port
+  type: ClusterIP
