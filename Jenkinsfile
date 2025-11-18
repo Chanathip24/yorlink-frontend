@@ -49,8 +49,8 @@ pipeline {
             steps {
                 // Update deployment with new image tag
                 sh """
-                    microk8s kubectl set image deployment/frontend-deployment frontend=$REGISTRY/$IMAGE_NAME:$IMAGE_TAG
-                    microk8s kubectl rollout status deployment/frontend-deployment
+                    microk8s kubectl set image deployment/yorlink-frontend frontend=$REGISTRY/$IMAGE_NAME:$IMAGE_TAG
+                    microk8s kubectl rollout status deployment/yorlink-frontend
                 """
             }
         }
