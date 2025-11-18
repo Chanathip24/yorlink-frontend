@@ -21,7 +21,7 @@ pipeline {
                 ]) {
                     sh """
                         echo "Building Docker image securely..."
-                        docker build \
+                        docker build --no-cache \
                         --build-arg VITE_YORLINK_API_BASE_URL=$VITE_API_BASE_URL \
                         --build-arg VITE_YORLINK_FRONTEND_URL=$VITE_FRONTEND_URL \
                         -t $REGISTRY/$IMAGE_NAME:latest .
