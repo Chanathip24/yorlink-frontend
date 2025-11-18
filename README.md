@@ -1,73 +1,183 @@
-# React + TypeScript + Vite
+# 🔗 YorLink - URL Shortener
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, feature-rich URL shortener application built with React and TypeScript. Create short links, protect them with passwords, schedule activation dates, and manage your links with ease.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript)
+![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?logo=vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **🔗 URL Shortening** - Convert long URLs into short, shareable links
+- **🔒 Protected Links** - Secure your links with password protection and optional hints
+- **📅 Scheduled Links** - Set activation dates for your links to go live at specific times
+- **⏰ Expiring Links** - Create links that automatically expire after a set duration
+- **🎯 Custom Aliases** - Create memorable custom short URLs
+- **📱 QR Code Generation** - Generate QR codes for easy sharing
+- **📊 Link History** - View and manage all your shortened URLs
+- **🎨 Modern UI** - Beautiful, responsive interface built with Emotion and Radix UI
+- **⚡ Fast Performance** - Built with Vite for lightning-fast development and builds
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework**: React 19.1.1
+- **Language**: TypeScript 5.9.3
+- **Build Tool**: Vite 7.1.7
+- **Styling**: Emotion (CSS-in-JS)
+- **UI Components**: Radix UI
+- **State Management**: Jotai
+- **Data Fetching**: TanStack Query (React Query)
+- **Form Handling**: React Hook Form + Zod
+- **Routing**: React Router DOM 7.6.0
+- **Icons**: Lucide React
+- **Notifications**: React Hot Toast
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📋 Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Before you begin, ensure you have the following installed:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Node.js** (v18 or higher recommended)
+- **pnpm** (package manager) - [Install pnpm](https://pnpm.io/installation)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Getting Started
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd yorlink-frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# API Configuration
+VITE_YORLINK_API_BASE_URL=https://api.yorlink.com
+VITE_YORLINK_FRONTEND_URL=https://yorlink.com
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> **Note**: Replace the URLs with your actual API and frontend URLs.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Development
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Start the development server:
+
+```bash
+pnpm dev
 ```
+
+The application will be available at `http://localhost:5173` (or the port shown in your terminal).
+
+### Building for Production
+
+Build the application for production:
+
+```bash
+pnpm build
+```
+
+The optimized build will be in the `dist` directory.
+
+Preview the production build locally:
+
+```bash
+pnpm preview
+```
+
+### Linting
+
+Check for linting errors:
+
+```bash
+pnpm lint
+```
+
+Auto-fix linting issues:
+
+```bash
+pnpm lint:fix
+```
+
+## 📁 Project Structure
+
+```
+yorlink-frontend/
+├── public/              # Static assets
+├── src/
+│   ├── atoms/          # Jotai state atoms
+│   ├── component/      # React components
+│   │   ├── common/     # Reusable UI components
+│   │   ├── layout/     # Layout components
+│   │   └── pages/      # Page components
+│   ├── config/         # Configuration files
+│   ├── constant/       # Constants and enums
+│   ├── hook/           # Custom React hooks
+│   │   ├── api/        # API hooks (queries & mutations)
+│   │   └── client/     # API client setup
+│   ├── pages/          # Page routes
+│   ├── router/         # Router configuration
+│   ├── styles/         # Global styles and themes
+│   ├── type/           # TypeScript type definitions
+│   ├── utilities/      # Utility functions
+│   ├── App.tsx         # Main App component
+│   └── main.tsx        # Application entry point
+├── index.html          # HTML template
+├── package.json        # Dependencies and scripts
+├── tsconfig.json       # TypeScript configuration
+└── vite.config.ts      # Vite configuration
+```
+
+## 🎯 Key Features Explained
+
+### Normal Links
+Create simple short URLs that redirect immediately to the original URL.
+
+### Protected Links
+Add password protection to your links. Optionally provide a password hint to help users remember the password.
+
+### Scheduled Links
+Set an activation date for your link. The link will only become active after the specified date and time.
+
+### Expiring Links
+Create links that automatically expire after a certain duration, perfect for time-sensitive content.
+
+### Custom Aliases
+Instead of random short codes, create memorable custom aliases for your links (e.g., `yorlink.com/my-custom-link`).
+
+## 🔧 Development Scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Build for production |
+| `pnpm preview` | Preview production build |
+| `pnpm lint` | Run ESLint |
+| `pnpm lint:fix` | Fix ESLint errors automatically |
+
+## 📝 Code Style
+
+This project uses:
+- **ESLint** for code linting
+- **TypeScript** for type safety
+- **Emotion** for styling with CSS-in-JS
+- **React Hook Form** with **Zod** for form validation
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is private and proprietary.
+
+---
+
+Made with ❤️ using React and TypeScript

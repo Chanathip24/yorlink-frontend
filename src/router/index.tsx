@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider, ScrollRestoration } from 'react-router-dom'
 
 import { Layout } from '@/component/layout'
+import { ROUTES } from '@/constant'
+import EntryPoint from '@/pages/EntryPoint'
 import HomePage from '@/pages/Home'
 
 const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
@@ -16,6 +18,10 @@ const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: ROUTES.ENTRY_POINT.path,
+        element: <EntryPoint />,
       },
     ],
   },

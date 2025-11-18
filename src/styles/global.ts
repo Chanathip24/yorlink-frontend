@@ -1,8 +1,8 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-import type { Theme } from '@/type'
+import { theme } from './theme'
 
-export const globalStyles = (theme: Theme): SerializedStyles => css`
+export const globalStyles: SerializedStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Thai:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
   * {
@@ -15,8 +15,7 @@ export const globalStyles = (theme: Theme): SerializedStyles => css`
   body {
     font-family: ${theme.typography.fontFamily.body};
     font-size: ${theme.typography.fontSize.base};
-    color: ${theme.colors.text.primary};
-    background-color: ${theme.colors.background.primary};
+    background-color: ${theme.colors.background};
     line-height: 1.5;
   }
 
@@ -52,7 +51,7 @@ export const globalStyles = (theme: Theme): SerializedStyles => css`
     transition: color 0.2s;
 
     &:hover {
-      color: ${theme.colors.secondary};
+      color: ${theme.colors.secondaryForeground};
     }
   }
 

@@ -1,23 +1,46 @@
 import { css, type SerializedStyles } from '@emotion/react'
 
-import { theme } from '@/styles'
+import { theme } from './theme'
 
+export const transitionBaseStyle: SerializedStyles = css`
+  transition: all 0.2s ease-in-out;
+`
 export const flexCenter: SerializedStyles = css`
   display: flex;
   justify-content: center;
   align-items: center;
 `
-
+export const flexColumn: SerializedStyles = css`
+  display: flex;
+  flex-direction: column;
+`
 export const flexBetween: SerializedStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-export const container: SerializedStyles = css`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 ${theme.spacing.lg};
+export const iconSizeStyle: SerializedStyles = css`
+  width: 16px;
+  height: 16px;
+  color: ${theme.colors.primary};
+`
+
+export const iconSizeForegroundStyle: SerializedStyles = css`
+  width: 16px;
+  height: 16px;
+`
+
+export const gapMd: SerializedStyles = css`
+  gap: ${theme.spacing.md};
+`
+
+export const gapSm: SerializedStyles = css`
+  gap: ${theme.spacing.sm};
+`
+
+export const block: SerializedStyles = css`
+  width: 100%;
 `
 
 export const buttonReset: SerializedStyles = css`
@@ -34,18 +57,13 @@ export const truncateText: SerializedStyles = css`
   white-space: nowrap;
 `
 
-export const card: SerializedStyles = css`
-  background: ${theme.colors.background.primary};
-  border: 1px solid ${theme.colors.border};
-  border-radius: ${theme.borderRadius.lg};
-  padding: ${theme.spacing.lg};
-  box-shadow: ${theme.shadows.sm};
-`
-
 // Media query helpers
 export const mediaQuery = {
-  mobile: `@media (min-width: ${theme.breakpoints.mobile})`,
-  tablet: `@media (min-width: ${theme.breakpoints.tablet})`,
   desktop: `@media (min-width: ${theme.breakpoints.desktop})`,
-  wide: `@media (min-width: ${theme.breakpoints.wide})`,
 }
+
+export const iconPrimaryXlStyle: SerializedStyles = css`
+  width: 24px;
+  height: 24px;
+  color: ${theme.colors.primary};
+`
